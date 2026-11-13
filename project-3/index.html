@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUS — modern SaaS analytics dashboard concept.">
+  <title>NEXUS — Analytics Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">N</div>
+        <div class="brand-text">
+          <strong>NEXUS</strong>
+          <span>Analytics</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <span class="nav-label">WORKSPACE</span>
+
+        <button class="side-link active" data-view="overview">
+          <span class="icon">⌂</span>
+          <span>Overview</span>
+        </button>
+
+        <button class="side-link" data-view="analytics">
+          <span class="icon">◫</span>
+          <span>Analytics</span>
+        </button>
+
+        <button class="side-link" data-view="customers">
+          <span class="icon">◎</span>
+          <span>Customers</span>
+          <span class="pill">248</span>
+        </button>
+
+        <button class="side-link" data-view="projects">
+          <span class="icon">◇</span>
+          <span>Projects</span>
+        </button>
+
+        <button class="side-link" data-view="reports">
+          <span class="icon">▤</span>
+          <span>Reports</span>
+        </button>
+
+        <span class="nav-label second">MANAGE</span>
+
+        <button class="side-link" data-action="settings">
+          <span class="icon">⚙</span>
+          <span>Settings</span>
+        </button>
+
+        <button class="side-link" data-action="help">
+          <span class="icon">?</span>
+          <span>Help Center</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-icon">✦</div>
+        <strong>Unlock Pro</strong>
+        <p>Get advanced reports, automation and unlimited exports.</p>
+        <button id="upgradeButton">Upgrade plan</button>
+      </div>
+
+      <div class="profile">
+        <div class="avatar">AG</div>
+        <div class="profile-info">
+          <strong>Alex Grant</strong>
+          <span>Product Team</span>
+        </div>
+        <button class="dots">•••</button>
+      </div>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <main class="main">
+
+      <header class="topbar">
+
+        <div class="topbar-left">
+          <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+
+          <div>
+            <p class="eyebrow" id="pageEyebrow">DASHBOARD</p>
+            <h1 id="pageTitle">Good evening, Alex.</h1>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+
+          <div class="search-box">
+            <span>⌕</span>
+            <input
+              type="search"
+              id="globalSearch"
+              placeholder="Search activity..."
+              autocomplete="off"
+            >
+            <kbd>⌘ K</kbd>
+          </div>
+
+          <button class="icon-button" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-icon">☼</span>
+          </button>
+
+          <div class="notification-wrap">
+            <button class="icon-button notification-button" id="notificationButton" aria-label="Notifications">
+              ♢
+              <span class="notification-dot"></span>
+            </button>
+
+            <div class="notification-panel" id="notificationPanel">
+              <div class="notification-header">
+                <div>
+                  <strong>Notifications</strong>
+                  <span>3 unread</span>
+                </div>
+                <button id="markRead">Mark all read</button>
+              </div>
+
+              <div class="notification-list">
+                <article>
+                  <div class="notice-icon purple">↗</div>
+                  <div>
+                    <strong>Revenue goal reached</strong>
+                    <p>Monthly revenue passed $84K.</p>
+                    <span>4 min ago</span>
+                  </div>
+                </article>
+
+                <article>
+                  <div class="notice-icon blue">+</div>
+                  <div>
+                    <strong>New workspace member</strong>
+                    <p>Maya joined the Product team.</p>
+                    <span>22 min ago</span>
+                  </div>
+                </article>
+
+                <article>
+                  <div class="notice-icon green">✓</div>
+                  <div>
+                    <strong>Export completed</strong>
+                    <p>October report is ready.</p>
+                    <span>1 hour ago</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <button class="primary-button" id="newReportButton">
+            <span>＋</span>
+            New report
+          </button>
+
+        </div>
+      </header>
+
+
+      <section class="overview-header">
+        <div>
+          <div class="live-badge" id="liveBadge">
+            <span></span>
+            LIVE WORKSPACE
+          </div>
+
+          <h2 id="sectionTitle">Performance overview</h2>
+          <p id="sectionDescription">Track revenue, users and growth across your workspace.</p>
+        </div>
+
+        <div class="view-mode-badge" id="viewModeBadge"><span></span> Overview mode</div>
+
+        <div class="period-switch" id="periodSwitch">
+          <button data-period="7">7D</button>
+          <button class="active" data-period="30">30D</button>
+          <button data-period="90">90D</button>
+          <button data-period="365">1Y</button>
+        </div>
+      </section>
+
+
+      <section class="metric-grid">
+
+        <article class="metric-card">
+          <div class="metric-top">
+            <span class="metric-label" id="metricLabel1">Total revenue</span>
+            <span class="metric-icon violet">↗</span>
+          </div>
+
+          <div class="metric-value-row">
+            <strong id="revenueValue">$84,240</strong>
+            <span class="trend up">+12.8%</span>
+          </div>
+
+          <p>vs. previous period</p>
+
+          <div class="sparkline spark-purple">
+            <i style="height:22%"></i>
+            <i style="height:31%"></i>
+            <i style="height:27%"></i>
+            <i style="height:42%"></i>
+            <i style="height:37%"></i>
+            <i style="height:54%"></i>
+            <i style="height:49%"></i>
+            <i style="height:68%"></i>
+            <i style="height:61%"></i>
+            <i style="height:82%"></i>
+            <i style="height:76%"></i>
+            <i style="height:95%"></i>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-top">
+            <span class="metric-label" id="metricLabel2">Active users</span>
+            <span class="metric-icon blue">◎</span>
+          </div>
+
+          <div class="metric-value-row">
+            <strong id="usersValue">12,840</strong>
+            <span class="trend up">+8.4%</span>
+          </div>
+
+          <p>vs. previous period</p>
+
+          <div class="sparkline spark-blue">
+            <i style="height:37%"></i>
+            <i style="height:44%"></i>
+            <i style="height:39%"></i>
+            <i style="height:57%"></i>
+            <i style="height:50%"></i>
+            <i style="height:63%"></i>
+            <i style="height:56%"></i>
+            <i style="height:70%"></i>
+            <i style="height:65%"></i>
+            <i style="height:81%"></i>
+            <i style="height:72%"></i>
+            <i style="height:88%"></i>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-top">
+            <span class="metric-label" id="metricLabel3">Conversion rate</span>
+            <span class="metric-icon green">%</span>
+          </div>
+
+          <div class="metric-value-row">
+            <strong id="conversionValue">6.42%</strong>
+            <span class="trend up">+1.9%</span>
+          </div>
+
+          <p>vs. previous period</p>
+
+          <div class="sparkline spark-green">
+            <i style="height:28%"></i>
+            <i style="height:33%"></i>
+            <i style="height:48%"></i>
+            <i style="height:41%"></i>
+            <i style="height:55%"></i>
+            <i style="height:59%"></i>
+            <i style="height:52%"></i>
+            <i style="height:66%"></i>
+            <i style="height:73%"></i>
+            <i style="height:69%"></i>
+            <i style="height:84%"></i>
+            <i style="height:91%"></i>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-top">
+            <span class="metric-label" id="metricLabel4">Avg. order value</span>
+            <span class="metric-icon orange">$</span>
+          </div>
+
+          <div class="metric-value-row">
+            <strong id="orderValue">$126.40</strong>
+            <span class="trend down">-2.1%</span>
+          </div>
+
+          <p>vs. previous period</p>
+
+          <div class="sparkline spark-orange">
+            <i style="height:68%"></i>
+            <i style="height:61%"></i>
+            <i style="height:72%"></i>
+            <i style="height:65%"></i>
+            <i style="height:58%"></i>
+            <i style="height:62%"></i>
+            <i style="height:51%"></i>
+            <i style="height:56%"></i>
+            <i style="height:45%"></i>
+            <i style="height:49%"></i>
+            <i style="height:38%"></i>
+            <i style="height:42%"></i>
+          </div>
+        </article>
+
+      </section>
+
+
+      <section class="dashboard-grid">
+
+        <article class="panel revenue-panel">
+
+          <div class="panel-header">
+            <div>
+              <span class="panel-kicker" id="mainPanelKicker">REVENUE</span>
+              <h3 id="mainPanelTitle">Revenue growth</h3>
+              <p id="mainPanelDescription">Income performance across the selected period.</p>
+            </div>
+
+            <button class="ghost-button">Export ↗</button>
+          </div>
+
+          <div class="revenue-summary">
+            <div>
+              <strong id="chartRevenue">$84,240</strong>
+              <span class="trend up">+12.8%</span>
+            </div>
+
+            <div class="legend">
+              <span><i class="legend-current"></i>Current period</span>
+              <span><i class="legend-previous"></i>Previous period</span>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="chart-y">
+              <span>$25K</span>
+              <span>$20K</span>
+              <span>$15K</span>
+              <span>$10K</span>
+              <span>$5K</span>
+              <span>$0</span>
+            </div>
+
+            <div class="chart-area">
+              <div class="grid-lines">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+
+              <svg
+                class="line-chart"
+                viewBox="0 0 800 260"
+                preserveAspectRatio="none"
+                aria-label="Revenue chart"
+              >
+                <defs>
+                  <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#7C5CFF" stop-opacity=".35"/>
+                    <stop offset="100%" stop-color="#7C5CFF" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+
+                <path
+                  class="area"
+                  d="M0 225 C80 205 100 190 160 198 C220 206 230 150 290 161 C350 172 370 112 430 125 C490 138 520 82 580 98 C640 114 675 58 730 71 C765 79 785 52 800 45 L800 260 L0 260 Z"
+                />
+
+                <path
+                  class="previous-line"
+                  d="M0 230 C80 218 105 212 160 215 C220 219 250 188 300 193 C360 198 390 164 445 171 C505 179 540 145 600 151 C660 158 710 125 800 130"
+                />
+
+                <path
+                  class="main-line"
+                  d="M0 225 C80 205 100 190 160 198 C220 206 230 150 290 161 C350 172 370 112 430 125 C490 138 520 82 580 98 C640 114 675 58 730 71 C765 79 785 52 800 45"
+                />
+
+                <circle cx="580" cy="98" r="5" class="chart-dot"/>
+              </svg>
+
+              <div class="chart-tooltip">
+                <span>Oct 18</span>
+                <strong>$18,420</strong>
+                <small>+14.2%</small>
+              </div>
+
+              <div class="chart-x">
+                <span>Oct 01</span>
+                <span>Oct 06</span>
+                <span>Oct 12</span>
+                <span>Oct 18</span>
+                <span>Oct 24</span>
+                <span>Oct 30</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="panel channels-panel">
+          <div class="panel-header compact">
+            <div>
+              <span class="panel-kicker" id="sidePanelKicker">ACQUISITION</span>
+              <h3 id="sidePanelTitle">Traffic channels</h3>
+            </div>
+
+            <button class="dots">•••</button>
+          </div>
+
+          <div class="donut-wrap">
+            <div class="donut">
+              <div class="donut-center">
+                <strong>48.2K</strong>
+                <span>sessions</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="channel-list">
+            <div>
+              <span><i class="channel-dot purple"></i>Organic Search</span>
+              <strong>42%</strong>
+            </div>
+
+            <div>
+              <span><i class="channel-dot blue"></i>Direct</span>
+              <strong>27%</strong>
+            </div>
+
+            <div>
+              <span><i class="channel-dot green"></i>Social</span>
+              <strong>18%</strong>
+            </div>
+
+            <div>
+              <span><i class="channel-dot orange"></i>Referral</span>
+              <strong>13%</strong>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+
+      <section class="lower-grid">
+
+        <article class="panel activity-panel">
+
+          <div class="panel-header">
+            <div>
+              <span class="panel-kicker" id="activityKicker">ACTIVITY</span>
+              <h3 id="activityTitle">Recent transactions</h3>
+            </div>
+
+            <button class="ghost-button">View all ↗</button>
+          </div>
+
+          <div class="table-toolbar">
+            <div class="mini-search">
+              <span>⌕</span>
+              <input
+                type="search"
+                id="tableSearch"
+                placeholder="Filter transactions"
+              >
+            </div>
+
+            <button class="filter-button">
+              Filters
+              <span>2</span>
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+
+              <tbody id="transactionBody">
+
+                <tr data-search="emma stone pro plan completed oct 30">
+                  <td>
+                    <div class="customer">
+                      <div class="avatar small av1">ES</div>
+                      <div>
+                        <strong>Emma Stone</strong>
+                        <span>emma@example.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Pro Plan</td>
+                  <td><span class="status completed">Completed</span></td>
+                  <td>Oct 30, 2026</td>
+                  <td><strong>$249.00</strong></td>
+                </tr>
+
+                <tr data-search="liam parker growth plan processing oct 29">
+                  <td>
+                    <div class="customer">
+                      <div class="avatar small av2">LP</div>
+                      <div>
+                        <strong>Liam Parker</strong>
+                        <span>liam@example.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Growth Plan</td>
+                  <td><span class="status processing">Processing</span></td>
+                  <td>Oct 29, 2026</td>
+                  <td><strong>$179.00</strong></td>
+                </tr>
+
+                <tr data-search="noah williams starter plan completed oct 29">
+                  <td>
+                    <div class="customer">
+                      <div class="avatar small av3">NW</div>
+                      <div>
+                        <strong>Noah Williams</strong>
+                        <span>noah@example.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Starter Plan</td>
+                  <td><span class="status completed">Completed</span></td>
+                  <td>Oct 29, 2026</td>
+                  <td><strong>$89.00</strong></td>
+                </tr>
+
+                <tr data-search="olivia carter pro plan refunded oct 28">
+                  <td>
+                    <div class="customer">
+                      <div class="avatar small av4">OC</div>
+                      <div>
+                        <strong>Olivia Carter</strong>
+                        <span>olivia@example.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Pro Plan</td>
+                  <td><span class="status refunded">Refunded</span></td>
+                  <td>Oct 28, 2026</td>
+                  <td><strong>$249.00</strong></td>
+                </tr>
+
+                <tr data-search="ethan clark growth plan completed oct 27">
+                  <td>
+                    <div class="customer">
+                      <div class="avatar small av5">EC</div>
+                      <div>
+                        <strong>Ethan Clark</strong>
+                        <span>ethan@example.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Growth Plan</td>
+                  <td><span class="status completed">Completed</span></td>
+                  <td>Oct 27, 2026</td>
+                  <td><strong>$179.00</strong></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="emptyState">
+            <span>⌕</span>
+            <strong>No matching transactions</strong>
+            <p>Try another search term.</p>
+          </div>
+        </article>
+
+
+        <article class="panel goals-panel">
+          <div class="panel-header compact">
+            <div>
+              <span class="panel-kicker" id="goalsKicker">GOALS</span>
+              <h3 id="goalsTitle">Monthly targets</h3>
+            </div>
+
+            <span class="month-tag">October</span>
+          </div>
+
+          <div class="goal-main">
+            <div class="goal-ring">
+              <div>
+                <strong>84%</strong>
+                <span>complete</span>
+              </div>
+            </div>
+
+            <div>
+              <span>Revenue goal</span>
+              <strong>$84.2K / $100K</strong>
+              <p>Only $15.8K left to hit this month’s target.</p>
+            </div>
+          </div>
+
+          <div class="goal-list">
+
+            <div class="goal-item">
+              <div class="goal-title">
+                <span>New customers</span>
+                <strong>248 / 300</strong>
+              </div>
+              <div class="progress">
+                <span style="width:82.6%"></span>
+              </div>
+            </div>
+
+            <div class="goal-item">
+              <div class="goal-title">
+                <span>Conversion</span>
+                <strong>6.42 / 7%</strong>
+              </div>
+              <div class="progress green">
+                <span style="width:91.7%"></span>
+              </div>
+            </div>
+
+            <div class="goal-item">
+              <div class="goal-title">
+                <span>Retention</span>
+                <strong>88 / 92%</strong>
+              </div>
+              <div class="progress blue">
+                <span style="width:95.6%"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="insight-box">
+            <span class="insight-icon">✦</span>
+            <div>
+              <strong>Smart insight</strong>
+              <p>Conversion is trending above forecast. Your target may be reached 4 days early.</p>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+
+      <footer class="dashboard-footer">
+        <span>NEXUS · SaaS Dashboard Concept</span>
+        <span>HTML · CSS · JavaScript</span>
+      </footer>
+
+    </main>
+  </div>
+
+
+  <div class="report-modal" id="reportModal">
+    <div class="modal-overlay" id="reportOverlay"></div>
+
+    <div class="modal-card">
+      <button class="modal-close" id="reportClose">×</button>
+
+      <div class="modal-symbol">▤</div>
+
+      <span class="panel-kicker">CREATE REPORT</span>
+      <h2>Build a custom report.</h2>
+      <p>Select the metrics you want to include in this demo report.</p>
+
+      <form id="reportForm">
+        <label>
+          Report name
+          <input type="text" id="reportName" placeholder="October performance" required>
+        </label>
+
+        <div class="checkbox-grid">
+          <label><input type="checkbox" checked> Revenue</label>
+          <label><input type="checkbox" checked> Active users</label>
+          <label><input type="checkbox"> Conversion</label>
+          <label><input type="checkbox"> Traffic</label>
+        </div>
+
+        <label>
+          Format
+          <select>
+            <option>Executive summary</option>
+            <option>Detailed analytics</option>
+            <option>Marketing report</option>
+          </select>
+        </label>
+
+        <button type="submit" class="primary-button wide">Generate demo report</button>
+
+        <p class="form-message" id="reportMessage"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="demo-toast" id="demoToast">
+    <span class="demo-toast-icon">✓</span>
+    <div>
+      <strong id="toastTitle">Demo action</strong>
+      <p id="toastText">This interaction is active.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
